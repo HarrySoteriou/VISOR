@@ -2,7 +2,7 @@
 
 https://www.pyimagesearch.com/category/object-tracking/
 
-Some comments (feel free to comment on these):
+### Some comments (feel free to comment on these):
 
 1. In the [object_tracking.py](https://github.com/HarrySoteriou/VISOR/blob/master/simple-object-tracking/object_tracker.py) file I added a print view of info_df. This 'info_df' should have been created in the centroidtracking.py script. 
 
@@ -19,9 +19,10 @@ a specific frame). Combined with the centroid that was calculated using the boun
 
 The detection model is this file:
 
-* **res10_300x300_ssd_iter_140000.caffemodel**
+* [res10_300x300_ssd_iter_140000.caffemodel](https://github.com/HarrySoteriou/VISOR/blob/master/simple-object-tracking/res10_300x300_ssd_iter_140000.caffemodel)
+* **Harry** this is basically where your model should be used in the file
 
-You can run the object tracker form your command line like this:
+### You can run the object tracker form your command line like this:
 
 ```
 cd C:\Users\20184364\Downloads\simple-object-tracking> (wherever you saved the folder!)
