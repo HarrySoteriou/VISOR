@@ -9,10 +9,11 @@
 
 ### The REAL to-do list:
 
-| Task                                                                                |   Y/N    |
+| Task                                                                                |     DONE    |
 |-------------------------------------------------------------------------------------|:-----------:|
+| Use the center of the object to track throughout frames                             |      ✔️     |
 | write the centroid location for a detected object to a dataframe                    |      ✔️     |
-| write that dataframe to a csv file so we can request it in the object tracker       |      ✔️     |
+| `modified:` write that dataframe to a csv file so we can request it                 |      ✔️     |
 | add the frame number to the corresponding centroid of that frame in the csv file    |      ✔️     |
 | label more images for training so we get a better model                             |      ❌     |
 | use information in the csv file to detect anomalies among the detected objects      |      ❌     |
