@@ -20,6 +20,10 @@ prototxt = "C:/Users/20184364/Downloads/simple-object-tracking/deploy.prototxt"
 model = "C:/Users/20184364/Downloads/simple-object-tracking/res10_300x300_ssd_iter_140000.caffemodel"
 confidence = 0.5
 vs = cv2.VideoCapture("C:/Users/20184364/Downloads/simple-object-tracking/video.avi")
+frame_nr = 0
+
+## initialize the dataframe where we want to add our tracking information
+info_df = pd.DataFrame(columns = ["object_id", "frame_number", "center_coordinate"])
 
 # initialize our centroid tracker and frame dimensions
 ct = CentroidTracker()
@@ -40,11 +44,11 @@ while True:
     # while True:
     # read the next frame from the video stream and resize it
     ret, frame = vs.read()
-    if frame is None:
-        from centroidtracker import info_df
-        print(info_df + "FIXED")
-    else:
-        frame = imutils.resize(frame, width=400)
+    frame = imutils.resize(frame, width=400)
+    
+    if ret:
+        frame_nr += 1
+
      # if the frame dimensions are None, grab them
     if W is None or H is None:
         (H, W) = frame.shape[:2]
@@ -74,15 +78,6 @@ while True:
             cv2.rectangle(frame, (startX, startY), (endX, endY),
                           (0, 255, 0), 2)
 
-            print(detections.shape)
-
-            #file = "frame_information"
-
-            #if not os.path.exists(file):
-            #    os.makedirs(file)
-
-
-
     # update our centroid tracker using the computed set of bounding
     # box rectangles
     objects = ct.update(rects)
@@ -95,11 +90,9 @@ while True:
         cv2.putText(frame, text, (centroid[0] - 10, centroid[1] - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
         cv2.circle(frame, (centroid[0], centroid[1]), 4, (0, 255, 0), -1)
-
-    # add information to the list
-    #{"frame number", "detected_object", "topleft", "topright", "botleft", "botright"}
-    #row = {ID, center_for_ID}
-    #frame_info.append(row)
+        
+    row2 = {"object_id": objectID, "frame_number": int(frame), "center_coordinate": centroid}
+    info_df.append(row2, ignore_index=True)
 
     # show the output frame
     cv2.imshow("Frame", frame)
