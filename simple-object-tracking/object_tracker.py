@@ -15,7 +15,6 @@ import imutils
 import time
 import cv2
 
-
 prototxt = "C:/Users/20184364/Downloads/simple-object-tracking/deploy.prototxt"
 model = "C:/Users/20184364/Downloads/simple-object-tracking/res10_300x300_ssd_iter_140000.caffemodel"
 confidence = 0.5
@@ -35,17 +34,15 @@ net = cv2.dnn.readNetFromCaffe(prototxt, model)
 
 # initialize the video stream and allow the camera sensor to warmup
 print("[INFO] starting video stream...")
-# vs = VideoStream(src="C:/Users/20184364/Downloads/simple-object-tracking/video.avi").start()
-#time.sleep(2.0)
 
 # loop over the frames from the video stream
-#while (vs.isOpened() == False):
 while True:
     # while True:
     # read the next frame from the video stream and resize it
     ret, frame = vs.read()
     frame = imutils.resize(frame, width=400)
     
+    ### we need the frame number for later 
     if ret:
         frame_nr += 1
 
@@ -106,5 +103,4 @@ while True:
 
 # do a bit of cleanup
 cv2.destroyAllWindows()
-print(info_df)
 # vs.stop()
