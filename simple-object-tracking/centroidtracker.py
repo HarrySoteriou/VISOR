@@ -7,8 +7,6 @@ import pandas as pd
 info_df = pd.DataFrame(columns = ["object_id", "frame_number", "center_coordinate"])
 i = 1
 
-#row = {"object_id": ,"frame_number": ,"center_coordinate": }
-
 class CentroidTracker():
     def __init__(self, maxDisappeared=50):
         # initialize the next unique object ID along with two ordered
