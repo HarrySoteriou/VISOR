@@ -1,11 +1,16 @@
+# one hashtag is a comment made by the original programmer
+
+## double hashtag is something i've changed
+
+
 # import the necessary packages
 from scipy.spatial import distance as dist
 from collections import OrderedDict
 import numpy as np
 import pandas as pd
 
+## initialize the dataframe where we want to add our tracking information
 info_df = pd.DataFrame(columns = ["object_id", "frame_number", "center_coordinate"])
-i = 1
 
 class CentroidTracker():
     def __init__(self, maxDisappeared=50):
@@ -69,9 +74,6 @@ class CentroidTracker():
         if len(self.objects) == 0:
             for i in range(0, len(inputCentroids)):
                 self.register(inputCentroids[i])
-                frame_id = i
-                row2 = {"object_id": self.register(inputCentroids[i]), "frame_number": frame_id, "center_coordinate": inputCentroids[i]}
-                info_df.append(row2, ignore_index=True)
 
         # otherwise, we are currently tracking objects so we need to
         # try to match the input centroids to existing object
@@ -119,13 +121,14 @@ class CentroidTracker():
                 # counter
                 objectID = objectIDs[row]
                 self.objects[objectID] = inputCentroids[col]
-                self.disappeared[objectID] = 0
-
-                frame_id = i
-                row2 = {"object_id": objectID, "frame_number": frame_id, "center_coordinate": inputCentroids[col]}
+                
+                ## add the tracking information to a row, and later append to the dict
+                ## first try without frame numbers
+                row2 = {"object_id": objectID, "frame_number": 1, "center_coordinate": self.objects[objectID]}
                 info_df.append(row2, ignore_index=True)
-                i += 1
-
+                
+                # reset the dissapeared counter
+                self.disappeared[objectID] = 0
 
                 # indicate that we have examined each of the row and
                 # column indexes, respectively
