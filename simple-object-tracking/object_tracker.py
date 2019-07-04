@@ -91,8 +91,8 @@ while True:
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
         cv2.circle(frame, (centroid[0], centroid[1]), 4, (0, 255, 0), -1)
         
-    row2 = {"object_id": objectID, "frame_number": frame_nr, "x-coordinate": centroid[0], "y-coordinate": centroid[1]}
-    info_df.append(row2, ignore_index=True)
+        row2 = {"object_id": objectID, "frame_number": frame_nr, "x-coordinate": centroid[0], "y-coordinate": centroid[1]}
+        info_df.append(row2, ignore_index=True)
 
     # show the output frame
     cv2.imshow("Frame", frame)
@@ -101,6 +101,8 @@ while True:
     # if the `q` key was pressed, break from the loop
     if key == ord("q"):
         break
+                                  
+    info_df.to_csv("./info_df_file.csv")
 
 # do a bit of cleanup
 cv2.destroyAllWindows()
