@@ -37,9 +37,9 @@ ________________________________________________________
 
 
 ### This is the intention of editing the centroid tracker file:
-* write the centroid location for a detected object to a dataframe 
-* write that dataframe to a csv file so we can request it in the object tracker
-* add the frame number to the corresponding centroid of that frame in the csv file, so we know when/what happened.
-* use the centroid information in the csv file as a means to detect anomalies among the detected objects
+1. `done`: write the centroid location for a detected object to a dataframe 
+1. `done`: write that dataframe to a csv file so we can request it in the object tracker
+1. `done`: add the frame number to the corresponding centroid of that frame in the csv file, so we know when/what happened.
+1. use the centroid information in the csv file as a means to detect anomalies among the detected objects
 			
 
