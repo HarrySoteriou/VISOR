@@ -1,6 +1,6 @@
 # one hashtag is a comment made by the original programmer
 
-## double hashtag is something i've changed
+### triple hashtag is something i've changed
 
 
 # import the necessary packages
