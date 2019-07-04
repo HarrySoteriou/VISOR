@@ -23,7 +23,7 @@ vs = cv2.VideoCapture("C:/Users/20184364/Downloads/simple-object-tracking/video.
 frame_nr = 0
 
 ## initialize the dataframe where we want to add our tracking information
-info_df = pd.DataFrame(columns = ["object_id", "frame_number", "center_coordinate"])
+info_df = pd.DataFrame(columns = ["object_id", "frame_number", "x-coordinate", "y-coordinate])
 
 # initialize our centroid tracker and frame dimensions
 ct = CentroidTracker()
@@ -91,7 +91,7 @@ while True:
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
         cv2.circle(frame, (centroid[0], centroid[1]), 4, (0, 255, 0), -1)
         
-    row2 = {"object_id": objectID, "frame_number": int(frame), "center_coordinate": centroid}
+    row2 = {"object_id": objectID, "frame_number": frame_nr, "x-coordinate": centroid[0], "y-coordinate": centroid[1]}
     info_df.append(row2, ignore_index=True)
 
     # show the output frame
