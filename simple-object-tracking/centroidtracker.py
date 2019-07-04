@@ -122,8 +122,8 @@ class CentroidTracker():
                 objectID = objectIDs[row]
                 self.objects[objectID] = inputCentroids[col]
                 
-                ## add the tracking information to a row, and later append to the dict
-                ## first try without frame numbers
+                ### add the tracking information to a row, and later append to the dict
+                ### first try without frame numbers
                 row2 = {"object_id": objectID, "frame_number": 1, "center_coordinate": self.objects[objectID]}
                 info_df.append(row2, ignore_index=True)
                 
@@ -164,7 +164,11 @@ class CentroidTracker():
             else:
                 for col in unusedCols:
                     self.register(inputCentroids[col])
+                    
+                    
+        ### write dictionary to a file so we reach it later on
+        ### keep in mind that the backslash is different between windows and mac, i'm working from a mac
+        info_df.to_csv(r'./info_df_file.csv')
 
         # return the set of trackable objects
-        info_df.append({"object_id": "1", "frame_number": "1", "center_coordinate": "1"}, ignore_index=True)
         return self.objects
