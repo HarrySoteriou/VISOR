@@ -3,7 +3,7 @@
 ### TO-DO - List
 
 1. 👓 Read the [simple-object-tracking](https://github.com/HarrySoteriou/VISOR/tree/master/simple-object-tracking) folder.
-1. Go out ..!
+1. Go out .....
 1. Get some :coffee: ... 
 
 
