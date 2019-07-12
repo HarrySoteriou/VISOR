@@ -1,0 +1,13 @@
+##FROM THE FOLDER WHERE THE FROZEN INFERENCE GRAPH IS SAVED
+STEP 1
+python '..\..\..\..\Anaconda3\Lib\site-packages\tensorflow\python\tools\optimize_for_inference.py' --input frozen_inference_graph.pb --output opt_graph.pb --input_names image_tensor --output_names "num_detections,detection_scores,detection_boxes,detection_classes" --placeholder_type_enum 4 --frozen_graph
+
+
+STEP 2 OPTION 1
+
+python '..\..\..\..\Anaconda3\Lib\site-packages\tensorflow\tool\graph_transforms\__init__.py' --in_graph=frozen_inference_graph.pb --out_graph=opt1_graph.pb --inputs=image_tensor --outputs="num_detections,detection_scores,detection_boxes,detection_classes" --transforms="fold_constants(ignore_errors=True)" 
+
+STEP2 OPTION 2
+go to root directory and run python './Anaconda3/Lib/site-packages/tensorflow/tool/graph_transforms/__init__.TransformGraph.py'
+
+python '../../../../Anaconda3/Lib/site-packages/tensorflow/tool/graph_transforms/__init__.py' --in_graph=opt_graph.pb --out_graph=final_graph.pb --inputs=Mul --outputs="num_detections,detection_scores,detection_boxes,detection_classes" --transforms="remove_nodes(op=PlaceholderWithDefault) strip_unused_nodes(type=float, shape=\"1,299,299,3\") sort_by_execution_order"
