@@ -19,9 +19,9 @@
 | use information in the csv file to detect anomalies among the detected objects      |      ❌     |
 | connect our trained model to the tracking script                                    |      ❌     |
 
+### Current issues:
 
-
-
+1. Unable to use the trained model in the tracking script. Reason is that the GraphDef cannot be parsed, still working on this.
 
 
 
